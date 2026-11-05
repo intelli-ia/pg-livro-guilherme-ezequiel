@@ -16,7 +16,6 @@ export const PRICE_OFFER = "R$ 97";
 export const PRICE_FAQ = "R$ 99";
 
 // Imagens (public/). Sem capa, a página renderiza a capa em CSS; sem foto, mostra um espaço reservado.
-// ATENÇÃO: a capa atual é provisória (outro livro do autor) — trocar por public/capa.webp de "O Preço da Liderança".
 export const IMAGES = {
   cover: "/capa.webp" as string | null,
   author: "/guilherme.webp" as string | null,

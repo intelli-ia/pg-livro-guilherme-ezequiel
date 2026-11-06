@@ -5,6 +5,7 @@ import CTAButton from "@/components/CTAButton";
 import FAQ from "@/components/FAQ";
 import Header from "@/components/Header";
 import { Check, Compass, Lock, Quote, Scale, Target, Tools, Truck, Users, Workshop } from "@/components/Icons";
+import LoopVideo from "@/components/LoopVideo";
 import Marker from "@/components/Marker";
 import Reveal from "@/components/Reveal";
 import { AUTHOR, CHECKOUT_URL, PRICE_FAQ, PRICE_FROM, PRICE_OFFER, WHATSAPP_URL } from "@/lib/config";
@@ -56,31 +57,11 @@ const included = [
   "Frete grátis.",
 ];
 
-// posições (desktop) dos blocos ao redor do livro em "O que você vai aprender"
-const learnPos = [
-  "absolute left-0 top-0 w-[7.75rem] sm:w-[13rem] lg:left-[3%] lg:top-[4%] lg:w-[16rem]",
-  "absolute bottom-0 left-0 w-[7.75rem] sm:w-[13rem] lg:bottom-[6%] lg:left-0 lg:w-[16rem]",
-  "absolute right-0 top-[9%] w-[7.75rem] sm:w-[13rem] lg:right-0 lg:top-[12%] lg:w-[16rem]",
-  "absolute bottom-[3%] right-0 w-[7.75rem] sm:w-[13rem] lg:bottom-[1%] lg:right-[3%] lg:w-[16rem]",
-];
-const learnFloat = ["float-a", "float-b", "float-c", "float-d"];
-
-function LearnCard({ item, index, className }: { item: (typeof learn)[number]; index: number; className: string }) {
-  const Icon = item.icon;
+function LearnIcon({ icon: Icon }: { icon: (typeof learn)[number]["icon"] }) {
   return (
-    <Reveal delay={0.1 + index * 0.1} className={className}>
-      <article
-        className={`h-full rounded-2xl border border-gold/30 bg-ink/80 p-2 shadow-2xl shadow-black/40 backdrop-blur-md sm:p-4 ${learnFloat[index]}`}
-      >
-        <div className="flex items-center gap-1.5 sm:gap-3">
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-gold/15 text-gold sm:h-9 sm:w-9 sm:rounded-xl">
-            <Icon className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
-          </span>
-          <h3 className="text-[0.625rem] font-bold leading-tight text-white sm:text-[0.8125rem]">{item.title}</h3>
-        </div>
-        <p className="mt-1.5 text-[0.5625rem] leading-snug text-white/65 sm:mt-2.5 sm:text-xs sm:leading-relaxed">{item.text}</p>
-      </article>
-    </Reveal>
+    <span className="flex h-14 w-14 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 text-gold">
+      <Icon className="h-6 w-6" />
+    </span>
   );
 }
 
@@ -264,20 +245,39 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* livro ao centro, blocos orbitando (2 de cada lado no desktop) */}
-          <div className="relative mx-auto mt-16 h-[38rem] max-w-md lg:h-[36rem] sm:max-w-[34rem] lg:max-w-[50rem]">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(240,178,33,0.22),transparent)] lg:h-[38rem] lg:w-[38rem]" />
-
-            <Reveal
-              y={40}
-              className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 justify-center"
-            >
-              <BookMockup width="clamp(12rem, 58vw, 18rem)" />
+          {/* bento: cartão principal (texto + vídeo) e três cartões iguais embaixo */}
+          <div className="mt-16 space-y-4 sm:space-y-5">
+            <Reveal y={40}>
+              <div className="grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] lg:grid-cols-[1.1fr_1fr]">
+                <div className="flex flex-col justify-center gap-6 p-8 sm:p-10 lg:p-14">
+                  <LearnIcon icon={learn[0].icon} />
+                  <h3 className="text-[1.75rem] font-bold leading-snug text-white sm:text-[2rem]">{learn[0].title}</h3>
+                  <p className="text-base leading-[1.8] text-white/75">{learn[0].text}</p>
+                </div>
+                {/* vídeo: no celular fica em cima do bloco; no desktop, à direita */}
+                <div className="relative order-first aspect-video overflow-hidden border-b border-white/10 lg:order-none lg:aspect-auto lg:min-h-[16rem] lg:border-b-0 lg:border-l">
+                  <LoopVideo
+                    src="/livro-folheando.mp4"
+                    poster="/livro-folheando-poster.webp"
+                    label="Folheando o sumário do livro O Preço da Liderança"
+                    className="absolute inset-0 size-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/30 via-transparent to-ink/20" />
+                </div>
+              </div>
             </Reveal>
 
-            {learn.map((item, i) => (
-              <LearnCard key={item.title} item={item} index={i} className={learnPos[i]} />
-            ))}
+            <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
+              {learn.slice(1).map((item, i) => (
+                <Reveal key={item.title} delay={i * 0.1} className="h-full">
+                  <article className="flex h-full flex-col gap-6 rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-gold/30">
+                    <LearnIcon icon={item.icon} />
+                    <h3 className="text-[1.35rem] font-bold leading-snug text-white sm:text-2xl">{item.title}</h3>
+                    <p className="text-base leading-[1.8] text-white/75">{item.text}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal>

@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 const META_PIXEL_ID = "1237841737736557";
+const GTM_ID = "GTM-NSLVFHWP";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,6 +28,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={`${poppins.variable} antialiased`}>
       <body>
         {children}
+
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtm-datalayer" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
 
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">

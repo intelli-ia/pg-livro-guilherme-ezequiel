@@ -1,8 +1,7 @@
 export const BOOK_TITLE = "O Preço da Liderança";
 export const AUTHOR = "Guilherme Ezequiel";
 
-// TODO: trocar pelo link real de checkout do cliente
-export const CHECKOUT_URL = "#oferta";
+export const CHECKOUT_URL = "https://pay.hotmart.com/G108218108E?checkoutMode=10";
 
 // TODO: trocar pelo número real do WhatsApp do cliente (DDI + DDD + número, só dígitos)
 const WHATSAPP_PHONE = "5500000000000";

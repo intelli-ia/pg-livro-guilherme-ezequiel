@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
+import UtmForwarder from "@/components/UtmForwarder";
 import "./globals.css";
 
 const META_PIXEL_ID = "1237841737736557";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={`${poppins.variable} antialiased`}>
       <body>
         {children}
+        <UtmForwarder />
 
         {/* Google Tag Manager */}
         <Script

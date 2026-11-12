@@ -353,15 +353,13 @@ export default function Home() {
                       <p className="mt-5 text-lg text-white/55">
                         De <span className="line-through decoration-gold/70 decoration-2">{PRICE_FROM}</span>
                       </p>
-                      <p className="flex items-baseline gap-3 text-white">
-                        <span className="text-xl font-medium text-white/70">Por</span>
+                      <p className="flex items-start gap-3 text-white">
+                        <span className="pt-3 text-xl font-medium text-white/70 md:pt-5">Por</span>
                         <span className="gold-text text-[5.5rem] font-bold leading-[0.95] tracking-tight sm:text-[7rem] md:text-[8.5rem]">
                           {PRICE_OFFER}
                         </span>
                       </p>
-                      <p className="mt-3 text-xl font-medium text-white/80">
-                        à vista <span className="text-white/60">{PRICE_INSTALLMENTS}</span>
-                      </p>
+                      <p className="mt-3 text-xl font-medium text-white/80">{PRICE_INSTALLMENTS}</p>
                     </div>
                   </div>
 

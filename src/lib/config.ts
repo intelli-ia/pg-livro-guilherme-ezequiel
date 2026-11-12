@@ -9,10 +9,11 @@ export const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHON
   "Olá! Tenho uma dúvida sobre o livro O Preço da Liderança",
 )}`;
 
-// Valores conforme a copy. Dobra 04 usa R$ 97; FAQ e chamada final citam R$ 99.
+// Valor do livro: R$ 147 à vista ou 12x de R$ 15,20.
 export const PRICE_FROM = "R$197";
-export const PRICE_OFFER = "R$ 97";
-export const PRICE_FAQ = "R$ 99";
+export const PRICE_OFFER = "R$ 147";
+export const PRICE_INSTALLMENTS = "ou 12x de R$ 15,20";
+export const PRICE_FAQ = "R$ 147";
 
 // Imagens (public/). Sem capa, a página renderiza a capa em CSS; sem foto, mostra um espaço reservado.
 export const IMAGES = {

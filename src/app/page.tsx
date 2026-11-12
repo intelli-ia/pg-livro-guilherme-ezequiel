@@ -8,7 +8,7 @@ import { Check, Compass, Lock, Quote, Scale, Target, Tools, Truck, Users, Worksh
 import LoopVideo from "@/components/LoopVideo";
 import Marker from "@/components/Marker";
 import Reveal from "@/components/Reveal";
-import { AUTHOR, CHECKOUT_URL, PRICE_FAQ, PRICE_FROM, PRICE_OFFER, WHATSAPP_URL } from "@/lib/config";
+import { AUTHOR, CHECKOUT_URL, PRICE_FAQ, PRICE_FROM, PRICE_INSTALLMENTS, PRICE_OFFER, WHATSAPP_URL } from "@/lib/config";
 
 const bullets = [
   {
@@ -358,6 +358,9 @@ export default function Home() {
                         <span className="gold-text text-[5.5rem] font-bold leading-[0.95] tracking-tight sm:text-[7rem] md:text-[8.5rem]">
                           {PRICE_OFFER}
                         </span>
+                      </p>
+                      <p className="mt-3 text-xl font-medium text-white/80">
+                        à vista <span className="text-white/60">{PRICE_INSTALLMENTS}</span>
                       </p>
                     </div>
                   </div>

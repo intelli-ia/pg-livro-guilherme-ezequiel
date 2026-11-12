@@ -9,7 +9,14 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => {
       const hero = document.getElementById("hero");
-      if (hero) setVisible(hero.getBoundingClientRect().bottom <= 0);
+      if (!hero) return;
+      const pastHero = hero.getBoundingClientRect().bottom <= 0;
+      // Some nas seções de CTA (oferta e chamada final): lá só o botão do checkout fica clicável
+      const inCta = ["oferta", "contato"].some((id) => {
+        const r = document.getElementById(id)?.getBoundingClientRect();
+        return !!r && r.top < window.innerHeight && r.bottom > 0;
+      });
+      setVisible(pastHero && !inCta);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

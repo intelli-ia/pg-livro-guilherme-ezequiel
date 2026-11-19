@@ -16,7 +16,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "O Preço da Liderança | Guilherme Ezequiel",
   description:
-    "Livro físico com frete grátis e workshop de bônus. Aprenda a desenvolver pessoas, delegar responsabilidades e enfrentar decisões difíceis com mais segurança.",
+    "Livro físico com frete grátis. Aprenda a desenvolver pessoas, delegar responsabilidades e enfrentar decisões difíceis com mais segurança.",
   alternates: { canonical: "/" },
 };
 

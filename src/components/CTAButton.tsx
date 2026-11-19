@@ -6,10 +6,12 @@ type Props = {
   label?: string;
   href?: string;
   /** gold: principal · outline: contorno dourado, fundos escuros · dark: fundos claros · whatsapp */
-  variant?: "gold" | "outline" | "dark" | "whatsapp";
+  variant?: "gold" | "outline" | "dark" | "white" | "whatsapp";
   size?: "sm" | "default" | "lg";
   icon?: "arrow" | "whatsapp" | "none";
   full?: boolean;
+  /** brilho contínuo (varredura de luz + pulso) para chamar atenção */
+  glow?: boolean;
   className?: string;
 };
 
@@ -20,6 +22,7 @@ const variants = {
   gold: "bg-gradient-to-b from-gold-soft to-gold text-ink shadow-[0_14px_36px_-12px_rgba(240,178,33,0.65),inset_0_1px_0_rgba(255,255,255,0.45)] hover:shadow-[0_20px_44px_-12px_rgba(240,178,33,0.85),inset_0_1px_0_rgba(255,255,255,0.5)]",
   outline: "border-2 border-gold/70 text-gold hover:border-gold hover:bg-gold hover:text-ink",
   dark: "bg-ink text-white shadow-[0_14px_30px_-14px_rgba(22,29,38,0.8)] hover:bg-ink-3",
+  white: "bg-white text-ink shadow-[0_18px_40px_-14px_rgba(22,29,38,0.55)] hover:bg-paper",
   whatsapp: "bg-[#25D366] text-ink hover:bg-[#1fb857]",
 };
 
@@ -37,6 +40,7 @@ export default function CTAButton({
   size = "default",
   icon = "arrow",
   full = false,
+  glow = false,
   className = "",
 }: Props) {
   const external = /^https?:/.test(href);
@@ -46,12 +50,12 @@ export default function CTAButton({
     <a
       href={href}
       {...(external || isCheckout ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`${base} ${variants[variant]} ${sizes[size]} ${full ? "flex w-full" : "w-full sm:w-auto"} ${className}`}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${full ? "flex w-full" : "w-full sm:w-auto"} ${glow ? "btn-glow" : ""} ${className}`}
     >
       {variant === "gold" && (
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 -left-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[300%]"
+          className={`${glow ? "btn-shine-bar " : ""}pointer-events-none absolute inset-y-0 -left-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[300%]`}
         />
       )}
       {icon === "whatsapp" && <WhatsAppIcon className={`${iconCls} shrink-0`} />}

@@ -23,13 +23,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
     background: var(--color-ink);
     color: var(--color-ink);
     font-family: var(--font-sans);
@@ -345,4 +345,36 @@
   .float-d {
     animation: none;
   }
+}
+
+/* Botão com brilho contínuo */
+@keyframes btn-shine {
+  0% { transform: translateX(0); }
+  55%, 100% { transform: translateX(320%); }
+}
+@keyframes btn-glow {
+  0%, 100% { box-shadow: 0 14px 36px -12px rgba(240, 178, 33, 0.65), 0 0 0 0 rgba(240, 178, 33, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45); }
+  50% { box-shadow: 0 18px 48px -8px rgba(240, 178, 33, 0.95), 0 0 0 12px rgba(240, 178, 33, 0), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+}
+.btn-glow { animation: btn-glow 2.4s ease-in-out infinite; }
+.btn-shine-bar { animation: btn-shine 2.8s ease-in-out infinite; }
+
+/* Selo de frete grátis: só o texto gira */
+@keyframes seal-spin { to { transform: rotate(360deg); } }
+.seal-spin { animation: seal-spin 16s linear infinite; }
+
+/* Faixas em loop entre a hero e a segunda dobra */
+.bands { --bands-h: clamp(120px, 16vw, 170px); position: relative; z-index: 10; height: var(--bands-h); margin-top: calc(var(--bands-h) / -2); overflow: hidden; background: linear-gradient(to bottom, transparent 50%, #fff 50%); }
+.band { position: absolute; left: -5%; right: -5%; top: 50%; padding: 14px 0; border-block: 3px solid var(--color-ink); }
+.band-gold { background: var(--color-gold); color: var(--color-ink); transform: translateY(-50%) rotate(-3deg); z-index: 2; }
+.band-ink { background: var(--color-ink-3); color: var(--color-gold); border-color: var(--color-gold); transform: translateY(-50%) rotate(2.5deg); }
+.band-track { display: flex; width: max-content; align-items: center; animation: ticker 46s linear infinite; }
+.band-reverse { animation-direction: reverse; animation-duration: 54s; }
+.band-track span { font-weight: 800; font-size: clamp(1.05rem, 2.6vw, 1.45rem); letter-spacing: -0.01em; white-space: nowrap; }
+.band-track i { font-style: normal; font-size: 0.9rem; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glow, .btn-shine-bar, .seal-spin, .band-track { animation: none !important; }
 }

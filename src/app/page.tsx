@@ -118,7 +118,7 @@ export default function Home() {
 
       {/* DOBRA 02 — PARA QUEM É O LIVRO */}
       <section id="para-quem" className="bg-light relative pb-32 pt-24 text-ink md:pb-40 md:pt-32">
-        <div className="mx-auto grid max-w-6xl gap-14 px-6 md:grid-cols-12 md:items-center md:gap-x-16">
+        <div className="mx-auto grid max-w-6xl gap-14 px-6 md:grid-cols-12 md:items-stretch md:gap-x-16">
           <div className="md:col-span-7">
             <Reveal>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-deep">Para quem é o livro</p>
@@ -146,8 +146,8 @@ export default function Home() {
             </ul>
           </div>
 
-          <Reveal y={40} className="md:col-span-5">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(22,29,38,0.6)]">
+          <Reveal y={40} className="md:col-span-5 md:h-full [&>div]:md:h-full">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden md:aspect-auto md:h-full md:max-w-none rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(22,29,38,0.6)]">
               {IMAGES.author && (
                 <Image
                   src={IMAGES.author}

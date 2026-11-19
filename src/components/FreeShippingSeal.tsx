@@ -20,10 +20,12 @@ export default function FreeShippingSeal({ className = "relative" }: { className
         <defs>
           <path id="seal-circle" d="M100 100 m-70 0 a70 70 0 1 1 140 0 a70 70 0 1 1 -140 0" />
         </defs>
-        <text fill="#f6cd5e" fontSize="19" fontWeight="800" letterSpacing="1">
-          <textPath href="#seal-circle" textLength="436" lengthAdjust="spacing">
-            FRETE GRÁTIS ✦ FRETE GRÁTIS ✦{" "}
-          </textPath>
+        <text fill="#f6cd5e" fontSize="19" fontWeight="800" letterSpacing="1" textAnchor="middle">
+          {/* dois textos e duas estrelas em posições fixas do círculo: espaçamento igual dos dois lados */}
+          <textPath href="#seal-circle" startOffset="25%">FRETE GRÁTIS</textPath>
+          <textPath href="#seal-circle" startOffset="75%">FRETE GRÁTIS</textPath>
+          <textPath href="#seal-circle" startOffset="0%">✦</textPath>
+          <textPath href="#seal-circle" startOffset="50%">✦</textPath>
         </text>
       </svg>
 

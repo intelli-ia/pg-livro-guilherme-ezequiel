@@ -10,7 +10,7 @@ import { Check, Compass, Lock, Scale, Tools, Users } from "@/components/Icons";
 import LoopVideo from "@/components/LoopVideo";
 import Marker from "@/components/Marker";
 import Reveal from "@/components/Reveal";
-import { AUTHOR, CHECKOUT_URL, IMAGES, PRICE_FROM, PRICE_INSTALLMENTS, PRICE_OFFER, WHATSAPP_URL } from "@/lib/config";
+import { AUTHOR, CHECKOUT_URL, IMAGES, PRICE_INSTALLMENTS, PRICE_OFFER, WHATSAPP_URL } from "@/lib/config";
 
 const audience = [
   {
@@ -283,12 +283,8 @@ export default function Home() {
                       <p className="inline-block rounded-full bg-gold/15 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
                         Condição especial de lançamento
                       </p>
-                      <p className="mt-5 text-lg text-white/55">
-                        De <span className="line-through decoration-gold/70 decoration-2">{PRICE_FROM}</span>
-                      </p>
-                      <p className="flex items-start gap-3 text-white">
-                        <span className="pt-3 text-xl font-medium text-white/70 md:pt-5">Por</span>
-                        <span className="gold-text text-[5.5rem] font-bold leading-[0.95] tracking-tight sm:text-[7rem] md:text-[8.5rem]">
+                      <p className="mt-5">
+                        <span className="gold-text text-[2.75rem] font-bold leading-[1.05] tracking-tight sm:text-[4rem] md:text-[5rem]">
                           {PRICE_OFFER}
                         </span>
                       </p>
